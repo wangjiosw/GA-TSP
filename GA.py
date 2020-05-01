@@ -27,6 +27,7 @@
 import numpy as np
 import  random
 import matplotlib.pyplot as plt
+# get_ipython().run_line_magic('matplotlib', 'inline')
 
 
 # # 1. 获取临接矩阵
@@ -134,7 +135,7 @@ def Cross(p1,p2):
     seg_a = a[begin:end+1]
     seg_b = b[begin:end+1]
 
-    remain = range(begin)
+    remain = list(range(begin))
     remain.extend(range(end+1,len(a)))
 
     for i in remain:
@@ -261,7 +262,7 @@ def Cross_Variation(chose,population):
     p_m = 0.3
     # 交叉变异操作
     chose_num = len(chose)
-    sample_times = chose_num/2
+    sample_times = chose_num//2
     for i in range(sample_times):
         index1,index2 = random.sample(chose,2)
         #print index1,index2
@@ -328,7 +329,7 @@ def find_min(population):
         
         min_cost = max(adap)
         if i%10 == 0:
-            print 'epoch %d: loss=%.2f'%(i,-min_cost)
+            print('epoch %d: loss=%.2f'%(i,-min_cost))
         loss.append([i,-min_cost])
         i += 1
         if i == epochs:
@@ -336,10 +337,10 @@ def find_min(population):
             p_len = len(population)
             for index in range(p_len):
                 if adap[index] == min_cost:
-                    print '最优路径:'
-                    print population[index]
-                    print '代价大小:'
-                    print -min_cost
+                    print('最优路径:')
+                    print(population[index])
+                    print('代价大小:')
+                    print(-min_cost)
                     break
     # 打印损失函数变换
     loss = np.array(loss)
